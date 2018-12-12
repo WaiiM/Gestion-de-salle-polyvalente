@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,9 +24,10 @@ public class SalleDAO extends DAO {
     // TODO Auto-generated method stub
     return false;
   }
-  
+
   public boolean isDateValide(int salleId, Date dateDebut, Date dateFin) {
-    if(dateDebut.after(dateFin)) return false;
+    if (dateDebut.after(dateFin))
+      return false;
     else {
       Statement statement;
       ResultSet resultSet;
@@ -36,30 +36,22 @@ public class SalleDAO extends DAO {
         String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE sal_id=" + salleId;
         statement = connection.createStatement();
         resultSet = statement.executeQuery(query);
-        while(resultSet.next()) {
-          //
-          /* Dans le cas ou la date de debut en parametre est avant la date recuperer de la BDD */
-          if(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut")).before(new SimpleDateFormat("yyyy-MM-dd").format(dateDebut)) && 
-              dateFin.before(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut"))) 
-              ) {
-            System.out.println(dateDebut);
-            System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut")));
+        while (resultSet.next()) {
+          Date debut = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut"));
+          Date fin = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_fin"));
+
+          if (dateDebut.before(debut) && !dateDebut.equals(debut) && dateFin.before(debut) && !dateFin.equals(debut)) {
             return true;
-          }
-          else {
-            /* Dans le cas ou la date de debut en parametre est avant la date recuperer de la BDD */
-            if(dateDebut.after(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_fin")))) {
-              System.out.println(dateDebut);
-              System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut")));
+          } else {
+
+            if (dateDebut.after(fin) && !dateDebut.equals(fin)) {
               return true;
-            }
-            else {
+            } else {
               return false;
             }
           }
         }
       } catch (Exception e) {
-        System.out.println(e.getMessage());
         return false;
       }
       return false;
