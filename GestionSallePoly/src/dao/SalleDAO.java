@@ -26,12 +26,10 @@ public class SalleDAO extends DAO {
   }
 
   public boolean isDateValide(int salleId, Date dateDebut, Date dateFin) {
-    if (dateDebut.after(dateFin))
-      return false;
+    if (dateDebut.after(dateFin)) return false;
     else {
       Statement statement;
       ResultSet resultSet;
-
       try {
         String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE sal_id=" + salleId;
         statement = connection.createStatement();

@@ -5,12 +5,12 @@ import java.util.*;
 
 public class Reservations {
 	
-	private static DAO dao;
+	private static DAO daoReservation;
 	private List<Reservation> listReservation;
 	
 	public Reservations() {
-		if(dao == null) {
-			dao = new DAO();
+		if(daoReservation == null) {
+			daoReservation = new ReservationDAO();
 		}
 		this.listReservation = new ArrayList<Reservation>();
 	}
@@ -29,6 +29,7 @@ public class Reservations {
 	}
 
 	public List<Reservation> getListReservation() {
+		this.update();
 		return listReservation;
 	}
 	

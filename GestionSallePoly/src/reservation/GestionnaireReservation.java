@@ -1,6 +1,6 @@
 package reservation;
 
-import java.util.List;
+import java.util.*;
 
 import assets.*;
 
@@ -15,31 +15,54 @@ public class GestionnaireReservation {
 		this.serviceReservations.init();
 	}
 	
-	public List<Reservation> getListReservation() {
-		this.serviceReservations.update(); //
-		return this.serviceReservations.getListReservation();
-	}
+
 	
 	public Reservation getReservation() {
 		return null;
 	}
 	
 	public boolean verification(Reservation r) {
-		
-		return true;
-	}
-	
-	public void reserver(Reservation r) {
 		serviceReservations.update();
 		Reservation reservation = r;
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(reservation);
-		if(serviceReserivationCourante.verifierDisponibilite()) {
-			System.out.println("Reservation done");
-			serviceReserivationCourante.reserver();
+		return (serviceReserivationCourante.verifierDisponibilite());
+	}
+	
+	public void modifierReservation(Reservation r) {
+		ReservationCourante serviceReserivationCourante = new ReservationCourante(r);
+		serviceReserivationCourante.update();
+	}
+	
+	public void reserver(Reservation r, EtapeReservation etape) {
+		r.setEtape(etape);
+		ReservationCourante serviceReserivationCourante = new ReservationCourante(r);
+		serviceReserivationCourante.reserver();
+	}
+
+	public List<Reservation> getListReservation() {
+		this.serviceReservations.update();
+		return this.serviceReservations.getListReservation();
+	}
+	
+	public List<Reservation> getListDemande() {
+		this.serviceReservations.update();
+		List<Reservation> listDemande = new ArrayList<Reservation>();
+		for(Reservation r : this.serviceReservations.getListReservation()) {
+			if(EtapeReservation.DEMANDE.equals(r.getEtape())) {
+				listDemande.add(r);
+			}
 		}
-		else {
-			System.out.println("Non Disponible");
+		return listDemande;
+	}
+
+	public List<Reservation> getListPreResevation() {
+		this.serviceReservations.update();
+		List<Reservation> listPre = new ArrayList<Reservation>();
+		for(Reservation r : this.serviceReservations.getListReservation()) {
+			if(EtapeReservation.PRERESERVATION.equals(r.getEtape())) {
+				listPre.add(r);
+			}
 		}
-		
+		return listPre;
 	}
 }

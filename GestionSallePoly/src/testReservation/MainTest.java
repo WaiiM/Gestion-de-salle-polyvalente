@@ -1,7 +1,7 @@
 package testReservation;
 
 import reservation.*;
-
+import vue.Window;
 import assets.*;
 
 public class MainTest {
@@ -14,6 +14,7 @@ public class MainTest {
 		
 		PeriodeReservation periode = new PeriodeReservation("12/12/2018", "20/12/2018");
 		
+		
 		Reservation r = new Reservation(occ, periode);
 		
 		rc.reserver(r);
@@ -21,6 +22,8 @@ public class MainTest {
 		for(Reservation re : rc.getListReservation()) {
 			System.out.println(re);
 		}
+		
+		//Window win = new Window();
 	}
 
 }

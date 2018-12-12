@@ -56,6 +56,10 @@ public class Reservation {
 	public EtapeReservation getEtape() {
 		return etape;
 	}
+	
+	public void setEtape(EtapeReservation etape) {
+		this.etape = etape;
+	}
 
 	public PeriodeReservation getPeriodeReservation() {
 		return periodeReservation;

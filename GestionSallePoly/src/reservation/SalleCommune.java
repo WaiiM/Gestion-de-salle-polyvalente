@@ -1,10 +1,12 @@
-package assets;
+package reservation;
 
 public abstract class SalleCommune extends Salle{
 
+	private String typeSalleCommune;
+	
 	public SalleCommune(int id, String name) {
 		super(id, name);
-		// TODO Auto-generated constructor stub
+		this.type = TypeSalle.SALLECOMMUNE;
 	}
 
 }

@@ -1,11 +1,13 @@
-package assets;
+package reservation;
 
-public abstract class Equipement {
+public abstract class Piece {
+	
 	private int id;
 	private String name;
 	private boolean etat;
-
-	public Equipement(int id, String name) {
+	protected TypeSalle type;
+	
+	public Piece(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -16,21 +18,16 @@ public abstract class Equipement {
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
 	public String getName() {
 		return name;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public TypeSalle getType() {
+		return type;
 	}
 
-
+	
 	public boolean isEtat() {
 		return etat;
 	}
