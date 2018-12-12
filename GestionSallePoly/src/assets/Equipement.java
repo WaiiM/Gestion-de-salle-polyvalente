@@ -3,7 +3,7 @@ package assets;
 public abstract class Equipement {
 	private int id;
 	private String name;
-	
+	private boolean etat;
 
 	public Equipement(int id, String name) {
 		this.id = id;
@@ -28,6 +28,16 @@ public abstract class Equipement {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public boolean isEtat() {
+		return etat;
+	}
+
+
+	public void setEtat(boolean etat) {
+		this.etat = etat;
 	}
 
 

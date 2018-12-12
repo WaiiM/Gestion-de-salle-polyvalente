@@ -9,5 +9,7 @@ public class Salle extends Piece{
 		this.type = TypeSalle.SALLE;
 		sallePolyv = salleP;
 	}
+	
+	
 
 }
