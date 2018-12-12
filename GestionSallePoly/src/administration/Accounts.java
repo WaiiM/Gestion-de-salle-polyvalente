@@ -11,7 +11,7 @@ public class Accounts {
 	
 	public Accounts() {
 		if(daoAccount == null) {
-			daoAccount = new AccountDAO();
+			//daoAccount = new AccountDAO();
 		}
 		this.listAccount = new ArrayList<Account>();
 	}

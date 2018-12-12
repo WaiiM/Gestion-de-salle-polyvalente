@@ -3,6 +3,10 @@ package vue;
 import java.awt.*;
 
 import javax.swing.*;
+
+import administration.Account;
+import controller.Controller;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,17 +14,22 @@ public class Window extends JFrame implements Observator {
 
   private static final long serialVersionUID = 1L;
   private JPanel mainPanel;
+  private JPanel adminPanel;
+  private JPanel secretairePanel;
   private JTextField textFieldUser;
   private JLabel lblUser;
   private JLabel lblPassword;
   private JTextField textFieldPassword;
+  private Controller controller;
+  
+  String[] listContent = {"Connexion", "Secretaire","Admin"};
 
   /**
    * Constructeur de la fenêtre.
    */
-  public Window(/*GestionFourmiliere gf*/) {
-    /*this.gf = gf;
-    gf.addObservator(this);*/
+  public Window(Controller controller) {
+    this.controller = controller;
+    /*gf.addObservator(this);*/
     this.setWinLook();
     this.setTitle("Gestion d'une salle polyvalente");
     this.setSize(1000, 600);
@@ -30,9 +39,12 @@ public class Window extends JFrame implements Observator {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLocationRelativeTo(null);
     this.mainPanel = new JPanel();
+    this.adminPanel = new AdminVue();
+    this.secretairePanel = new SecretaireVue();
     mainPanel.setBackground(Color.WHITE);
     mainPanel.setLayout(null);
-    this.setContentPane(mainPanel);
+    CardLayout card = new CardLayout();
+    this.getContentPane().setLayout(card);
     
     JLabel lblConnexion = new JLabel("Connexion");
     lblConnexion.setBounds(300, 159, 82, 20);
@@ -60,12 +72,22 @@ public class Window extends JFrame implements Observator {
     btnConnexion.addMouseListener(new MouseAdapter() {
     	@Override
     	public void mouseClicked(MouseEvent arg0) {
-    		System.out.println("Hello World");
-    		System.out.println(textFieldPassword.getText());
+    		String user = textFieldUser.getText();
+    		String password = textFieldPassword.getText();
+    		if(controller.getAdminController().connecter(new Account(0, user, password))) {
+    			System.out.println("Connexion OK");
+    			card.show(getContentPane(), listContent[1]);
+    		}
+    		else {
+    			System.out.println("Connexion KO");
+    		}
     	}
     });
     btnConnexion.setBounds(293, 267, 89, 23);
     mainPanel.add(btnConnexion);
+    this.getContentPane().add(mainPanel, listContent[0]);
+    this.getContentPane().add(secretairePanel, listContent[1]);
+    this.getContentPane().add(adminPanel, listContent[2]);
     this.setVisible(true);
   }
 
