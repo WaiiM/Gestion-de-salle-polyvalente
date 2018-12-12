@@ -4,9 +4,13 @@ import java.sql.*;
 
 public abstract class DAO {
 
-  protected Connection connection;
-  protected Statement statement;
-  protected ResultSet result;
+  protected static Connection connection;
+
+  protected DAO() {
+    if (connection == null) {
+      this.connect();
+    }
+  }
 
   public boolean connect() {
     try {
