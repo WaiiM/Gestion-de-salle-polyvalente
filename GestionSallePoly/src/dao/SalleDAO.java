@@ -36,7 +36,11 @@ public class SalleDAO extends DAO {
         String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE sal_id=" + salleId;
         statement = connection.createStatement();
         resultSet = statement.executeQuery(query);
-        while(resultSet.next()) {
+        while(resultSet.next()) { // pourquoi while, alors qu'on va récuprer juste une seule instruction
+        	/*
+        	 * REMARQUE: J'ai codé une méthode fla classe PeriodeReservation, tu peux l'utiliser pour comparer les dates
+        	 * Tu l'instances avec les 2 dates de l'occupation de la salle et tu donnes les dates passés en param fla méthode isIncluded
+        	 */
           //
           /* Dans le cas ou la date de debut en parametre est avant la date recuperer de la BDD */
           if(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut")).before(new SimpleDateFormat("yyyy-MM-dd").format(dateDebut)) && 

@@ -1,4 +1,4 @@
-package assets;
+package reservation;
 
 public class Salle extends Piece{
 

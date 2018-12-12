@@ -1,4 +1,4 @@
-package assets;
+package reservation;
 
 public enum TypeSalle {
 	POLYVALENTE,

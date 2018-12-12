@@ -8,7 +8,7 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		
-		/*ReservationControle rc = new ReservationControle();
+		ReservationControle rc = new ReservationControle();
 		
 		Occupant occ = new Occupant(1,"WaiiM");
 		
@@ -21,9 +21,9 @@ public class MainTest {
 		
 		for(Reservation re : rc.getListReservation()) {
 			System.out.println(re);
-		}*/
+		}
 		
-		Window win = new Window();
+		//Window win = new Window();
 	}
 
 }

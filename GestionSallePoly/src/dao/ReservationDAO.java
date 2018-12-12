@@ -9,8 +9,8 @@ import java.util.List;
 
 import assets.Equipement;
 import assets.Occupant;
-import assets.Piece;
 import assets.Service;
+import reservation.Piece;
 import reservation.Reservation;
 
 public class ReservationDAO extends DAO{

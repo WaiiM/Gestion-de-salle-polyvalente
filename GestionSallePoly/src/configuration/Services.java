@@ -5,6 +5,7 @@ import java.util.List;
 
 import assets.*;
 import dao.*;
+import reservation.Salle;
 
 public class Services {
 	private static ServiceDAO daoService;

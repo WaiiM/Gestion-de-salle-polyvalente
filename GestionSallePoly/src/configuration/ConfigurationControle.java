@@ -9,7 +9,7 @@ public class ConfigurationControle {
 	}
 	
 	public void addAccount() {
-		this.gc();
+		//this.gc();
 	}
 	
 	public void updateAccount() {

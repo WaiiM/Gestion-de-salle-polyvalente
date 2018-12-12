@@ -1,6 +1,6 @@
 package reservation;
 
-import java.util.List;
+import java.util.*;
 
 import assets.*;
 
@@ -15,10 +15,7 @@ public class GestionnaireReservation {
 		this.serviceReservations.init();
 	}
 	
-	public List<Reservation> getListReservation() {
-		this.serviceReservations.update();
-		return this.serviceReservations.getListReservation();
-	}
+
 	
 	public Reservation getReservation() {
 		return null;
@@ -30,15 +27,36 @@ public class GestionnaireReservation {
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(reservation);
 		return (serviceReserivationCourante.verifierDisponibilite());
 	}
-	
-	public void reserver(Reservation r) {
+	public void reserver(Reservation r, EtapeReservation etape) {
+		r.setEtape(etape);
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(r);
-		if(this.verification(r)) {
-			serviceReserivationCourante.reserver();
-			System.out.println("Reservation done");
+		serviceReserivationCourante.reserver();
+	}
+
+	public List<Reservation> getListReservation() {
+		this.serviceReservations.update();
+		return this.serviceReservations.getListReservation();
+	}
+	
+	public List<Reservation> getListDemande() {
+		this.serviceReservations.update();
+		List<Reservation> listDemande = new ArrayList<Reservation>();
+		for(Reservation r : this.serviceReservations.getListReservation()) {
+			if(EtapeReservation.DEMANDE.equals(r.getEtape())) {
+				listDemande.add(r);
+			}
 		}
-		else {
-			System.out.println("Non Disponible");
+		return listDemande;
+	}
+
+	public List<Reservation> getListPreResevation() {
+		this.serviceReservations.update();
+		List<Reservation> listPre = new ArrayList<Reservation>();
+		for(Reservation r : this.serviceReservations.getListReservation()) {
+			if(EtapeReservation.PRERESERVATION.equals(r.getEtape())) {
+				listPre.add(r);
+			}
 		}
+		return listPre;
 	}
 }

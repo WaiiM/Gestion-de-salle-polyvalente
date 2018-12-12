@@ -2,9 +2,8 @@ package configuration;
 
 import java.util.List;
 
-import administration.Account;
-import administration.Accounts;
-import administration.AdministrationControle;
+import assets.*;
+import reservation.Salle;
 
 public class GestionnaireConfiguration {
 	
@@ -23,8 +22,8 @@ public class GestionnaireConfiguration {
 		this.serviceEquipements.init();
 	}
 	
-	public List<Account> getListSalle() {
+	public List<Salle> getListSalle() {
 		this.serviceSalles.update();
-		return this.serviceSalles.getListAccount();
+		return this.serviceSalles.getListSalle();
 	}
 }

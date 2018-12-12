@@ -1,8 +1,7 @@
-package assets;
+package reservation;
 
 public enum EtapeReservation {
 	DEMANDE,
-	VERIFICATION,
 	PRERESERVATION,
 	RESERVATION
 }

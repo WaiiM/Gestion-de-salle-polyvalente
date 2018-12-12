@@ -10,10 +10,9 @@ public class PeriodeReservation {
 	private Date dateFin;
 	
 	public PeriodeReservation(String dateDebut, String dateFin) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
-			this.dateDebut = sdf.parse(dateDebut);
-			this.dateFin = sdf.parse(dateFin);
+			this.dateDebut = Utils.sdf.parse(dateDebut);
+			this.dateFin = Utils.sdf.parse(dateFin);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,5 +28,16 @@ public class PeriodeReservation {
 		return dateFin;
 	}
 	
+	public boolean isIncluded(String dateDebut, String dateFin) {
+		boolean result = false;
+		PeriodeReservation periode = new PeriodeReservation(dateDebut, dateFin);
+		if(this.getDateDebut().after(periode.getDateFin())) {
+			result = true;
+		}
+		else if(this.getDateFin().before(periode.getDateDebut())){
+			result = true;
+		}
+		return result;
+	}
 	
 }

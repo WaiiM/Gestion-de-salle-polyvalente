@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.*;
+import reservation.Salle;
 import assets.*;
 
 public class Salles {

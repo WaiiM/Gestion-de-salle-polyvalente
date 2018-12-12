@@ -1,4 +1,4 @@
-package assets;
+package reservation;
 
 public class SallePolyvalente extends Piece{
 
