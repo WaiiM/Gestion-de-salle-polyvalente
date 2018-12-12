@@ -38,7 +38,7 @@ public class GestionnaireConfiguration {
 		return this.serviceServices.getListService();
 	}
 	
-	public List<Salle> getListSalleDispo(PeriodeReservation periode) { // je suis là
+	public List<Salle> getListSalleDispo(PeriodeReservation periode) { // je suis là 
 		List<Salle> listSalleLibre = new ArrayList<Salle>();
 		for(Salle s : this.serviceSalles.getListSalle()) {
 			if(s!=null && s.get) {
