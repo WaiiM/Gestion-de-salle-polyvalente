@@ -8,15 +8,18 @@ public class AdministrationControle {
 		this.ga = new GestionnaireAdministration(this);
 	}
 	
-	public void addAccount() {
-		this.ga.addAccount();
+	public boolean connecter(Account account) {
+		return ga.isExists(account);
 	}
-	
-	public void updateAccount() {
-		
-	}
-	
-	public void deleteAccount() {
-		
-	}
+//	public void addAccount() {
+//		this.ga.addAccount();
+//	}
+//	
+//	public void updateAccount() {
+//		
+//	}
+//	
+//	public void deleteAccount() {
+//		
+//	}
 }

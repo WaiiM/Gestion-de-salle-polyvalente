@@ -12,16 +12,17 @@ public class GestionnaireAdministration {
 		this.serviceAccounts.init();
 	}
 	
-	public void addAccount() {
-		serviceAccounts.add();
+	public boolean isExists(Account a) {
+		boolean result = false;
+		for(Account account : this.serviceAccounts.getListAccount()) {
+			if(account!= null && account.equals(a)) {
+				result = true;
+				break;
+			}
+		}
+		return result;
 	}
 	
-	public void updateAccount() {
-		
-	}
-	public void deleteAccount() {
-		
-	}
 	public List<Account> getListAccount() {
 		this.serviceAccounts.update();
 		return this.serviceAccounts.getListAccount();

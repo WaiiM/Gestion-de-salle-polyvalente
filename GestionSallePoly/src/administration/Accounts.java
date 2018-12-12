@@ -8,7 +8,6 @@ import dao.DAO;
 public class Accounts {
 	private static DAO daoAccount;
 	private List<Account> listAccount;
-	private Account account;
 	
 	public Accounts() {
 		if(daoAccount == null) {
@@ -30,11 +29,9 @@ public class Accounts {
 		// mettre à jour la liste des reservations depuis la BDD
 	}
 	
-	public void add() {
-		
-	}
 	
 	public List<Account> getListAccount() {
+		this.update();
 		return listAccount;
 	}
 }
