@@ -40,6 +40,9 @@ public class SalleDAO extends DAO {
         	/*
         	 * REMARQUE: J'ai codé une méthode fla classe PeriodeReservation, tu peux l'utiliser pour comparer les dates
         	 * Tu l'instances avec les 2 dates de l'occupation de la salle et tu donnes les dates passés en param fla méthode isIncluded
+        	 * Ex dans ce cas: PeriodeReservation p = new PeriodeReservation(resultSet.getString("res_date_debut"), resultSet.getString("res_date_fin"));
+        	 * Après tu vérifie la méthode p.isIncluded(new PeriodeResrvation(dateDebut, dateFin));
+        	 * 
         	 */
           //
           /* Dans le cas ou la date de debut en parametre est avant la date recuperer de la BDD */

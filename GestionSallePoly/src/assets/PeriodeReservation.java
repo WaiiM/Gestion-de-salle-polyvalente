@@ -28,9 +28,8 @@ public class PeriodeReservation {
 		return dateFin;
 	}
 	
-	public boolean isIncluded(String dateDebut, String dateFin) {
+	public boolean isIncluded(PeriodeReservation periode) {
 		boolean result = false;
-		PeriodeReservation periode = new PeriodeReservation(dateDebut, dateFin);
 		if(this.getDateDebut().after(periode.getDateFin())) {
 			result = true;
 		}
