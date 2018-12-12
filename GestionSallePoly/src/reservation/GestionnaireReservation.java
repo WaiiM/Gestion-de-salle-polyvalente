@@ -25,17 +25,17 @@ public class GestionnaireReservation {
 	}
 	
 	public boolean verification(Reservation r) {
-		
-		return true;
-	}
-	
-	public void reserver(Reservation r) {
 		serviceReservations.update();
 		Reservation reservation = r;
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(reservation);
-		if(serviceReserivationCourante.verifierDisponibilite()) {
+		if()
+		return true;
+	}
+	
+	public void reserver(Reservation r, ReservationCourante rc) {
+		if(this.verification(r)) {
+			rc.reserver();
 			System.out.println("Reservation done");
-			serviceReserivationCourante.reserver();
 		}
 		else {
 			System.out.println("Non Disponible");
