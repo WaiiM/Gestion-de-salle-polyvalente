@@ -1,22 +1,23 @@
 package reservation;
 
-import dao.DAO;
+import dao.*;
 import assets.*;
 
 public class ReservationCourante {
 	
-	private static DAO dao; //
+	private static ReservationDAO daoReservation; //
 	private Reservation reservation;
 	
 	public ReservationCourante(Reservation r) {
-		if(dao == null) {
-			dao = new DAO();
+		if(daoReservation == null) {
+			daoReservation = new ReservationDAO();
 		}
 		this.reservation = r;
 	}
 	
 	public void reserver() {
-		dao.add();
+		Object o = null;
+		daoReservation.add(o);
 	}
 	
 	public boolean verifierDisponibilite() {
