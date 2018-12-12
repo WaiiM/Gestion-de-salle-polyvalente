@@ -31,6 +31,10 @@ public class ReservationCourante {
 		daoReservation.add(this.reservation);
 	}
 	
+	public void update() {
+		daoReservation.update(this.reservation);
+	}
+	
 	public boolean verifierDisponibilite() {
 		boolean result = false;
 		if(this.reservation == null) return result;

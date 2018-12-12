@@ -26,6 +26,20 @@ public class ReservationControle {
 		return gr.getReservation();
 	}
 	
+	public void mettreEnPreReservation(Reservation r) {
+		r.setEtape(EtapeReservation.PRERESERVATION);
+		gr.modifierReservation(r);
+	}
+	
+	public void mettreEnResrvation(Reservation r) {
+		r.setEtape(EtapeReservation.RESERVATION);
+		gr.modifierReservation(r);
+	}
+	
+	public void mettreEnDemande(Reservation r) {
+		r.setEtape(EtapeReservation.DEMANDE);
+		gr.modifierReservation(r);
+	}
 	
 	public void demander(Reservation r) {
 		if(gr.verification(r)) {
@@ -33,7 +47,6 @@ public class ReservationControle {
 			System.out.println("Demander Reservation done");
 			return;
 		}
-		
 	}
 	
 	public void prereserver(Reservation r) {
@@ -53,5 +66,11 @@ public class ReservationControle {
 		}
 		System.out.println("Reservation Echoué");
 		
+	}
+	
+	public void modifierReservation(Reservation r) {
+		if(gr.verification(r)) {
+			gr.modifierReservation(r);
+		}
 	}
 }

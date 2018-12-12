@@ -27,6 +27,12 @@ public class GestionnaireReservation {
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(reservation);
 		return (serviceReserivationCourante.verifierDisponibilite());
 	}
+	
+	public void modifierReservation(Reservation r) {
+		ReservationCourante serviceReserivationCourante = new ReservationCourante(r);
+		serviceReserivationCourante.update();
+	}
+	
 	public void reserver(Reservation r, EtapeReservation etape) {
 		r.setEtape(etape);
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(r);
