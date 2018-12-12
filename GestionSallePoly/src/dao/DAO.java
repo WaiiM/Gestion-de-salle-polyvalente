@@ -13,11 +13,7 @@ public abstract class DAO {
       Class.forName("com.mysql.jdbc.Driver");
       System.out.println("Driver ok");
 
-      String url = "jdbc:mysql://obiwan2.univ-brest.fr/zfm1-zkardyan0";
-      String user = "zkardyan0";
-      String password = "xphvfvqb";
-      
-      connection = DriverManager.getConnection(url, user, password);
+      connection = DriverManager.getConnection(Infos.url, Infos.user, Infos.pass);
       System.out.println("Connexion bien établié");
       return true;
     } catch (Exception e) {
@@ -25,14 +21,10 @@ public abstract class DAO {
       return false;
     }
   }
-  public abstract boolean create();
 
-  public abstract boolean delete();
+  public abstract boolean add(Object o);
 
-  public abstract boolean update();
-  /*
-  public static void main(String []args) {
-    new DAO().connect();
-  }
-  */
+  public abstract boolean delete(int id);
+
+  public abstract boolean update(Object o);
 }
