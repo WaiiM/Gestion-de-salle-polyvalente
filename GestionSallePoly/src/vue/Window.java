@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import administration.Account;
+import administration.TypeAccount;
 import controller.Controller;
 
 import java.awt.event.MouseAdapter;
@@ -74,9 +75,17 @@ public class Window extends JFrame implements Observator {
     	public void mouseClicked(MouseEvent arg0) {
     		String user = textFieldUser.getText();
     		String password = textFieldPassword.getText();
-    		if(controller.getAdminController().connecter(new Account(0, user, password))) {
+    		Account account = null;
+    		if( (account = controller.getAdminController().connecter(new Account(0, user, password))) != null) {
     			System.out.println("Connexion OK");
-    			card.show(getContentPane(), listContent[1]);
+    			if(TypeAccount.ADMIN.equals(account.getType())) {
+    				System.out.println("Connexion ADMIN");
+    				card.show(getContentPane(), listContent[2]);
+    			}
+    			else {
+    				System.out.println("Connexion Secretaire");
+    				card.show(getContentPane(), listContent[1]);
+    			}
     		}
     		else {
     			System.out.println("Connexion KO");

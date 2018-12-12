@@ -12,15 +12,15 @@ public class GestionnaireAdministration {
 		this.serviceAccounts.init();
 	}
 	
-	public boolean isExists(Account a) {
-		boolean result = false;
+	public Account isExists(Account a) {
+		Account result = null;
 		for(Account account : this.serviceAccounts.getListAccount()) {
 			if(account!= null && account.equals(a)) {
-				result = true;
+				result = account;
 				break;
 			}
 		}
-		return true;
+		return result;
 	}
 	
 	public List<Account> getListAccount() {

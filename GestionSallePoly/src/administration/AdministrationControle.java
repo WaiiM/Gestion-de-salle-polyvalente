@@ -8,7 +8,7 @@ public class AdministrationControle {
 		this.ga = new GestionnaireAdministration(this);
 	}
 	
-	public boolean connecter(Account account) {
+	public Account connecter(Account account) {
 		return ga.isExists(account);
 	}
 //	public void addAccount() {
