@@ -4,16 +4,20 @@ import assets.*;
 import java.util.*;
 
 public class Reservation {
+	private EtapeReservation etape;
 	private Occupant occupant;
 	private List<Piece> listSalle;
 	private List<Service> listSerivce;
 	private List<Equipement> listEquipement;
+	private PeriodeReservation periodeReservation;
 	
-	public Reservation(Occupant occ) {
+	public Reservation(Occupant occ, PeriodeReservation p) {
+		etape = EtapeReservation.DEMANDE;
 		this.occupant = occ;
 		this.listSalle = new ArrayList<Piece>();
 		this.listSerivce = new ArrayList<Service>();
 		this.listEquipement = new ArrayList<Equipement>();
+		this.periodeReservation = p;
 	}
 
 	public Occupant getOccupant() {
@@ -48,6 +52,15 @@ public class Reservation {
 		this.listEquipement = listEquipement;
 	}
 	
+	
+	public EtapeReservation getEtape() {
+		return etape;
+	}
+
+	public PeriodeReservation getPeriodeReservation() {
+		return periodeReservation;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer str = new StringBuffer("Reservation:");

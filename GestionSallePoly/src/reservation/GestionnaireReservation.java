@@ -2,11 +2,12 @@ package reservation;
 
 import java.util.List;
 
+import assets.*;
+
 public class GestionnaireReservation {
 	
 	private ReservationControle rc;
 	private Reservations serviceReservations;
-	private ReservationCourante serviceReserivation;
 	
 	public GestionnaireReservation(ReservationControle rc) {
 		this.rc = rc;
@@ -23,7 +24,22 @@ public class GestionnaireReservation {
 		return null;
 	}
 	
-	public void reserver() {
+	public boolean verification(Reservation r) {
+		
+		return true;
+	}
+	
+	public void reserver(Reservation r) {
+		serviceReservations.update();
+		Reservation reservation = r;
+		ReservationCourante serviceReserivationCourante = new ReservationCourante(reservation);
+		if(serviceReserivationCourante.verifierDisponibilite()) {
+			System.out.println("Reservation done");
+			serviceReserivationCourante.reserver();
+		}
+		else {
+			System.out.println("Non Disponible");
+		}
 		
 	}
 }

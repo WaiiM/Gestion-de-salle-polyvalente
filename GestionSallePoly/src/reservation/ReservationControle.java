@@ -1,6 +1,7 @@
 package reservation;
 
 import java.util.*;
+import assets.*;
 
 public class ReservationControle {
 	
@@ -18,7 +19,8 @@ public class ReservationControle {
 		return gr.getReservation();
 	}
 	
-	public void reserver() {
-		gr.reserver();
+	public void reserver(Reservation r) {
+		gr.verification(r);
+		gr.reserver(r);
 	}
 }
