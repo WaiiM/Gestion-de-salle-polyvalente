@@ -37,6 +37,7 @@ public class SalleDAO extends DAO {
         statement = connection.createStatement();
         resultSet = statement.executeQuery(query);
         while(resultSet.next()) {
+          //
           /* Dans le cas ou la date de debut en parametre est avant la date recuperer de la BDD */
           if(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut")).before(new SimpleDateFormat("yyyy-MM-dd").format(dateDebut)) && 
               dateFin.before(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut"))) 
