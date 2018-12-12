@@ -28,18 +28,17 @@ public class GestionnaireReservation {
 		serviceReservations.update();
 		Reservation reservation = r;
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(reservation);
-		if()
-		return true;
+		return (serviceReserivationCourante.verifierDisponibilite());
 	}
 	
-	public void reserver(Reservation r, ReservationCourante rc) {
+	public void reserver(Reservation r) {
+		ReservationCourante serviceReserivationCourante = new ReservationCourante(r);
 		if(this.verification(r)) {
-			rc.reserver();
+			serviceReserivationCourante.reserver();
 			System.out.println("Reservation done");
 		}
 		else {
 			System.out.println("Non Disponible");
 		}
-		
 	}
 }
