@@ -16,7 +16,7 @@ public class GestionnaireReservation {
 	}
 	
 	public List<Reservation> getListReservation() {
-		this.serviceReservations.update();
+		this.serviceReservations.update(); //
 		return this.serviceReservations.getListReservation();
 	}
 	
