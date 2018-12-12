@@ -10,7 +10,6 @@ import assets.*;
 public class Salles {
 	private static SalleDAO daoSAlle;
 	private List<Salle> listSalle;
-	private Salle salle;
 	
 	public Salles() {
 		if(daoSAlle == null) {
@@ -32,11 +31,9 @@ public class Salles {
 		// mettre à jour la liste des reservations depuis la BDD
 	}
 	
-	public void add() {
-		
-	}
 	
 	public List<Salle> getListSalle() {
+		this.update();
 		return listSalle;
 	}
 }

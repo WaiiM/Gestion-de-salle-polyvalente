@@ -29,6 +29,7 @@ public class Reservations {
 	}
 
 	public List<Reservation> getListReservation() {
+		this.update();
 		return listReservation;
 	}
 	

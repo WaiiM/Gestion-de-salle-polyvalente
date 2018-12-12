@@ -10,7 +10,6 @@ import reservation.Salle;
 public class Services {
 	private static ServiceDAO daoService;
 	private List<Service> listService;
-	private Service service;
 	
 	public Services() {
 		if(daoService == null) {
@@ -32,11 +31,9 @@ public class Services {
 		// mettre à jour la liste des reservations depuis la BDD
 	}
 	
-	public void add() {
-		
-	}
 	
 	public List<Service> getListService() {
+		this.update();
 		return listService;
 	}
 }

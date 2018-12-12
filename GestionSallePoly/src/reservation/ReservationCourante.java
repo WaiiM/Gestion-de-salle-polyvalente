@@ -2,6 +2,9 @@ package reservation;
 
 import dao.*;
 import assets.*;
+import configuration.EquipementCourant;
+import configuration.SalleCourante;
+import configuration.SallePoylvCourante;
 
 public class ReservationCourante {
 	
@@ -40,15 +43,25 @@ public class ReservationCourante {
 		if(this.reservation == null) return result;
 		for(Piece p : this.reservation.getListSalle()) {
 			if(TypeSalle.POLYVALENTE.equals(p.getType())) {
-				if(!daoSallePoly.isDateValide(p.getId(), this.reservation.getPeriodeReservation().getDateDebut(), this.reservation.getPeriodeReservation().getDateFin())) {
+				if(!(new SallePoylvCourante((SallePolyvalente)p)).verifierDisponibilite(this.reservation.getPeriodeReservation())) {
+					result = false;
 					break;
 				}
 			}
 			else if(TypeSalle.SALLE.equals(p.getType()) || TypeSalle.SALLECOMMUNE.equals(p.getType())) {
-				if(!daoSalle.isDateValide(p.getId(), this.reservation.getPeriodeReservation().getDateDebut(), this.reservation.getPeriodeReservation().getDateFin())) {
+				if(!(new SalleCourante((Salle)p)).verifierDisponibilite(this.reservation.getPeriodeReservation())) {
+					result = false;
 					break;
 				}
 			}
+		}
+		if(!result) return result;
+		for(Equipement p : this.reservation.getListEquipement()) {
+			if(!(new EquipementCourant(p)).verifierDisponibilite(this.reservation.getPeriodeReservation())) {
+				result = false;
+				break;
+			}
+			result = true;
 		}
 		return result;
 	}

@@ -8,15 +8,35 @@ public class ConfigurationControle {
 		this.gc = new GestionnaireConfiguration(this);
 	}
 	
-	public void addAccount() {
-		//this.gc();
+	public void addSalle() {
 	}
 	
-	public void updateAccount() {
+	public void updateSalle() {
 		
 	}
 	
-	public void deleteAccount() {
+	public void removeSalle() {
+		
+	}
+	
+	public void addService() {
+	}
+	
+	public void updateService() {
+		
+	}
+	
+	public void deleteService() {
+		
+	}
+	public void addEquipement() {
+	}
+	
+	public void updateEquipement() {
+		
+	}
+	
+	public void removeEquipement() {
 		
 	}
 }

@@ -9,7 +9,6 @@ import dao.*;
 public class Equipements {
 	private static SalleDAO daoSalle;
 	private List<Equipement> listEquipement;
-	private Equipement equipement;
 	
 	public Equipements() {
 		if(daoSalle == null) {
@@ -31,11 +30,9 @@ public class Equipements {
 		// mettre à jour la liste des reservations depuis la BDD
 	}
 	
-	public void add() {
-		
-	}
 	
-	public List<Equipement> getListAccount() {
+	public List<Equipement> getListEquipement() {
+		this.update();
 		return listEquipement;
 	}
 }
