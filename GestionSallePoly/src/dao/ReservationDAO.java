@@ -28,9 +28,8 @@ public class ReservationDAO extends DAO{
   @Override
   public boolean delete(int id) {
     Statement statement;
-    ResultSet result;
     try{
-      String query="DELETE FROM **** WHERE ****="+id;
+      String query = "DELETE FROM **** WHERE ****="+id;
       statement = connection.createStatement();
       statement.executeUpdate(query);
       System.out.println("Suppression effectue");
@@ -47,6 +46,10 @@ public class ReservationDAO extends DAO{
     return false;
   }
   public Reservation getReservation(int id) {
+    ResultSet result;
+    
+    
+    
     Reservation reservation = null;
     Occupant occupant;
     List<Piece> listSalle;
@@ -60,8 +63,17 @@ public class ReservationDAO extends DAO{
   
   
   public boolean isDateValide(int id, Date dateDebut, Date dateFin) {
-    
-    return false;
+    Statement statement;
+    try{
+      String query = "SELECT  FROM **** WHERE ****="+id;
+      statement = connection.createStatement();
+      statement.executeUpdate(query);
+      
+      return true;
+   }catch(SQLException e){
+       System.out.println(e.getMessage());
+       return false;
+   }
   }
   
   public List<Reservation> getAllReservation(){
