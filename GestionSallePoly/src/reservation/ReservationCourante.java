@@ -5,7 +5,7 @@ import assets.*;
 
 public class ReservationCourante {
 	
-	private static DAO dao;
+	private static DAO dao; //
 	private Reservation reservation;
 	
 	public ReservationCourante(Reservation r) {
