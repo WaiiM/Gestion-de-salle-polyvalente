@@ -1,6 +1,8 @@
 package dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,10 +27,10 @@ public class ReservationDAO extends DAO{
 
   @Override
   public boolean delete(int id) {
+    Statement statement;
+    ResultSet result;
     try{
-      String query="DELETE FROM **** WHERE ****="+id; 
-      connect();
-      
+      String query="DELETE FROM **** WHERE ****="+id;
       statement = connection.createStatement();
       statement.executeUpdate(query);
       System.out.println("Suppression effectue");
@@ -45,11 +47,14 @@ public class ReservationDAO extends DAO{
     return false;
   }
   public Reservation getReservation(int id) {
-    Reservation reservation = new Reservation();
+    Reservation reservation = null;
     Occupant occupant;
     List<Piece> listSalle;
     List<Service> listSerivce;
     List<Equipement> listEquipement;
+    
+    
+    return reservation;
   }
   
   
