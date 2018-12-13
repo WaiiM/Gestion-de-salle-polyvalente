@@ -1,15 +1,24 @@
 package vue;
 
-import java.awt.*;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import administration.Account;
 import administration.TypeAccount;
 import controller.Controller;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Window extends JFrame implements Observator {
 
@@ -47,29 +56,35 @@ public class Window extends JFrame implements Observator {
     CardLayout card = new CardLayout();
     this.getContentPane().setLayout(card);
     
-    JLabel lblConnexion = new JLabel("Connexion");
-    lblConnexion.setBounds(300, 159, 82, 20);
+    JLabel lblConnexion = new JLabel("Authentification");
+    lblConnexion.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    lblConnexion.setBounds(367, 97, 224, 59);
     mainPanel.add(lblConnexion);
     
     textFieldUser = new JTextField();
-    textFieldUser.setBounds(310, 190, 86, 20);
+    textFieldUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
+    textFieldUser.setBounds(445, 207, 364, 43);
     mainPanel.add(textFieldUser);
     textFieldUser.setColumns(10);
     
-    lblUser = new JLabel("User");
-    lblUser.setBounds(243, 193, 46, 14);
+    lblUser = new JLabel("Userame  : ");
+    lblUser.setFont(new Font("Tahoma", Font.PLAIN, 40));
+    lblUser.setBounds(146, 207, 273, 43);
     mainPanel.add(lblUser);
     
-    lblPassword = new JLabel("Password");
-    lblPassword.setBounds(243, 233, 46, 14);
+    lblPassword = new JLabel("Password : ");
+    lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 40));
+    lblPassword.setBounds(146, 276, 273, 49);
     mainPanel.add(lblPassword);
     
-    textFieldPassword = new JTextField();
-    textFieldPassword.setBounds(310, 221, 86, 20);
+    textFieldPassword = new JPasswordField();
+    textFieldPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
+    textFieldPassword.setBounds(445, 292, 364, 43);
     mainPanel.add(textFieldPassword);
     textFieldPassword.setColumns(10);
     
     JButton btnConnexion = new JButton("Connexion");
+    btnConnexion.setFont(new Font("Tahoma", Font.PLAIN, 40));
     btnConnexion.addMouseListener(new MouseAdapter() {
     	@Override
     	public void mouseClicked(MouseEvent arg0) {
@@ -92,10 +107,16 @@ public class Window extends JFrame implements Observator {
     		}
     	}
     });
-    btnConnexion.setBounds(293, 267, 89, 23);
+    btnConnexion.setBounds(367, 439, 289, 75);
     mainPanel.add(btnConnexion);
     this.getContentPane().add(mainPanel, listContent[0]);
+    
+    JLabel lblGestionnaireDeSalle = new JLabel("Gestionnaire de Salle Polyvatente");
+    lblGestionnaireDeSalle.setFont(new Font("Tahoma", Font.PLAIN, 60));
+    lblGestionnaireDeSalle.setBounds(29, 11, 930, 75);
+    mainPanel.add(lblGestionnaireDeSalle);
     this.getContentPane().add(secretairePanel, listContent[1]);
+    secretairePanel.setLayout(null);
     this.getContentPane().add(adminPanel, listContent[2]);
     this.setVisible(true);
   }
