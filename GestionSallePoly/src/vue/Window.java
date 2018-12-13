@@ -19,6 +19,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import administration.Account;
 import administration.TypeAccount;
 import controller.Controller;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Window extends JFrame implements Observator {
 
@@ -57,7 +59,7 @@ public class Window extends JFrame implements Observator {
     this.getContentPane().setLayout(card);
     
     JLabel lblConnexion = new JLabel("Authentification");
-    lblConnexion.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    lblConnexion.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 30));
     lblConnexion.setBounds(367, 97, 224, 59);
     mainPanel.add(lblConnexion);
     
@@ -68,12 +70,12 @@ public class Window extends JFrame implements Observator {
     textFieldUser.setColumns(10);
     
     lblUser = new JLabel("Userame  : ");
-    lblUser.setFont(new Font("Tahoma", Font.PLAIN, 40));
+    lblUser.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 40));
     lblUser.setBounds(146, 207, 273, 43);
     mainPanel.add(lblUser);
     
     lblPassword = new JLabel("Password : ");
-    lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 40));
+    lblPassword.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 40));
     lblPassword.setBounds(146, 276, 273, 49);
     mainPanel.add(lblPassword);
     
@@ -84,7 +86,11 @@ public class Window extends JFrame implements Observator {
     textFieldPassword.setColumns(10);
     
     JButton btnConnexion = new JButton("Connexion");
-    btnConnexion.setFont(new Font("Tahoma", Font.PLAIN, 40));
+    btnConnexion.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent arg0) {
+      }
+    });
+    btnConnexion.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 40));
     btnConnexion.addMouseListener(new MouseAdapter() {
     	@Override
     	public void mouseClicked(MouseEvent arg0) {
@@ -112,7 +118,7 @@ public class Window extends JFrame implements Observator {
     this.getContentPane().add(mainPanel, listContent[0]);
     
     JLabel lblGestionnaireDeSalle = new JLabel("Gestionnaire de Salle Polyvatente");
-    lblGestionnaireDeSalle.setFont(new Font("Tahoma", Font.PLAIN, 60));
+    lblGestionnaireDeSalle.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 60));
     lblGestionnaireDeSalle.setBounds(29, 11, 930, 75);
     mainPanel.add(lblGestionnaireDeSalle);
     this.getContentPane().add(secretairePanel, listContent[1]);

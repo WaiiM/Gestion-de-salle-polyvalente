@@ -27,6 +27,14 @@ public class PeriodeReservation {
 		return dateFin;
 	}
 	
+	 public String getDateDebutString() {
+	    return Utils.sdf.format(dateDebut);
+	  }
+
+	  public String getDateFinString() {
+	    return Utils.sdf.format(dateFin);
+	  }
+	  
 	public boolean isIncluded(PeriodeReservation periode) {
 	  if(this.getDateDebut().after(this.getDateFin())) return false;
 	  if(periode.getDateDebut().after(periode.getDateFin())) return false;

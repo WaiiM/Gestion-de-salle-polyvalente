@@ -26,11 +26,11 @@ public class SalleCourante {
 	}
 	
 	public boolean verifierDisponibilite(PeriodeReservation periode) {
-		boolean result = true;
+		boolean result = false;
 		if(periode == null || this.salle == null) return false;
 		if(TypeSalle.SALLE.equals(salle.getType()) || TypeSalle.SALLECOMMUNE.equals(salle.getType())) {
 			if(daoSalle.isDateValide(salle.getId(), periode.getDateDebut(), periode.getDateFin())) {
-				result = false;
+				result = true;
 			}
 		}
 		return result;

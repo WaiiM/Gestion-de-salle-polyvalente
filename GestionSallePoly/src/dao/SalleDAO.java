@@ -63,7 +63,7 @@ public class SalleDAO extends DAO {
     Statement statement;
     ResultSet resultSet;
     try {
-      String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE sal_id=" + salleId+" ORDER BY DESC LIMIT 1,1";
+      String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE sal_id="+salleId+" ORDER BY res_date_debut DESC LIMIT 1,1";
       statement = connection.createStatement();
       resultSet = statement.executeQuery(query);
       while (resultSet.next()) {
@@ -82,10 +82,8 @@ public class SalleDAO extends DAO {
     Statement statement;
     try {
       statement = connection.createStatement();
-      //for (int i = 0; i < reservation.getListSalle().size(); i++) {
-        String query = "INSERT INTO r_reservation_salle(res_id, sal_id, res_date_debut, res_date_fin) VALUES ('"+salle.getId()+"', "+ r.getId() + ", '"+r.getPeriodeReservation().getDateDebut().toString()+"', '"+r.getPeriodeReservation().getDateFin().toString()+"')";
-        statement.executeUpdate(query);
-      //}
+      String query = "INSERT INTO r_reservation_salle(res_id, sal_id, res_date_debut, res_date_fin) VALUES ("+r.getId()+", "+ salle.getId() + ", '"+r.getPeriodeReservation().getDateDebutString()+"', '"+r.getPeriodeReservation().getDateFinString()+"')";
+      statement.executeUpdate(query);
       return true;
 
     } catch (Exception e) {

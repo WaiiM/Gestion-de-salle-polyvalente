@@ -20,9 +20,11 @@ public class OccupantDAO extends DAO{
       Statement statement;
       int id;
       try {
+        //int typeId = getIdType(occupant.getType());
+        
         statement = connection.createStatement();
         //for (int i = 0; i < reservation.getListSalle().size(); i++) {
-          String query = "INSERT INTO t_occupant_occ(occ_nom, occ_toc_id) VALUES ('"+ occupant.getName() + "', "+getIdType(occupant.getType())+")";
+          String query = "INSERT INTO t_occupant_occ(occ_nom, occ_toc_id) VALUES ('"+ occupant.getName() + "', 1)";
           id = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
         //}
         return id;
