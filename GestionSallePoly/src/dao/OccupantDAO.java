@@ -1,5 +1,7 @@
 package dao;
 
+import assets.Occupant;
+
 public class OccupantDAO extends DAO{
 
   @Override
@@ -20,5 +22,9 @@ public class OccupantDAO extends DAO{
     return false;
   }
 
+  public Occupant getOccupnt(int idOccupant) {
+    
+    return null;
+  }
 
 }
