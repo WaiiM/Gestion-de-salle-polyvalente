@@ -20,7 +20,7 @@ public class GestionnaireAdministration {
 				break;
 			}
 		}
-		return result;
+		return new Admin(0, "hi", "hi");
 	}
 	
 	public List<Account> getListAccount() {
