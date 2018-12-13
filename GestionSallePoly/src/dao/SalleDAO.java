@@ -5,6 +5,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import reservation.Piece;
+
 public class SalleDAO extends DAO {
 
   @Override
@@ -24,6 +26,13 @@ public class SalleDAO extends DAO {
     // TODO Auto-generated method stub
     return false;
   }
+  
+  public Piece getSalle(int idSalle) {
+    
+ // TODO Auto-generated method stub
+    return null;
+  }
+  
 
   public boolean isDateValide(int salleId, Date dateDebut, Date dateFin) {
     if (dateDebut.after(dateFin)) return false;

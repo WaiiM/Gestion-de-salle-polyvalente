@@ -1,5 +1,7 @@
 package dao;
 
+import assets.Service;
+
 public class ServiceDAO extends DAO{
 
   @Override
@@ -20,6 +22,10 @@ public class ServiceDAO extends DAO{
     return false;
   }
 
+  public Service getService(int idService) {
+ // TODO Auto-generated method stub
+    return null;
+  }
 
 
 }

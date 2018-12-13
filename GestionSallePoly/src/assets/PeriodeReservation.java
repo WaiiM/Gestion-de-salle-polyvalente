@@ -9,10 +9,10 @@ public class PeriodeReservation {
 	private Date dateDebut;
 	private Date dateFin;
 	
-	public PeriodeReservation(String dateDebut, String dateFin) {
+	public PeriodeReservation(Date dateDebut2, Date dateFin2) {
 		try {
-			this.dateDebut = Utils.sdf.parse(dateDebut);
-			this.dateFin = Utils.sdf.parse(dateFin);
+			this.dateDebut = Utils.sdf.parse(dateDebut2);
+			this.dateFin = Utils.sdf.parse(dateFin2);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

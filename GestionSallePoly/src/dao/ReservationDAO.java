@@ -10,7 +10,9 @@ import java.util.List;
 
 import assets.Equipement;
 import assets.Occupant;
+import assets.PeriodeReservation;
 import assets.Service;
+import reservation.EtapeReservation;
 import reservation.Piece;
 import reservation.Reservation;
 
@@ -37,7 +39,7 @@ public class ReservationDAO extends DAO {
 
       } catch (Exception e) {
         return false;
-      } 
+      }
     }
   }
 
@@ -60,47 +62,180 @@ public class ReservationDAO extends DAO {
     return false;
   }
 
-  public Reservation getReservation(int id) {
-    Reservation reservation = null;
-    Occupant occupant;
-    List<Piece> listSalle;
-    List<Service> listSerivce;
-    List<Equipement> listEquipement;
-    
+  private Occupant getOccupant(int idReservation) {
     Statement statement;
     ResultSet resultSet;
     try {
-      String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE sal_id=" +id;
-      
+      String query = "SELECT res_occ_id FROM t_reservation_res WHERE res_id=" + idReservation;
       statement = connection.createStatement();
       resultSet = statement.executeQuery(query);
+      // Get the occupant id
+      int idOccupant = 0;
       while (resultSet.next()) {
-        Date debut = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut"));
-        Date fin = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_fin"));
+        idOccupant = Integer.parseInt(resultSet.getString("res_occ_id"));
+      }
+      // get the occupant data
+      if (idOccupant != 0) {
+        OccupantDAO ocupantDAO = new OccupantDAO();
+        return ocupantDAO.getOccupnt(idOccupant);
+      } else {
+        return null;
+      }
+    } catch (Exception e) {
+      return null;
+    }
+  }
 
-        if (dateDebut.before(debut) && !dateDebut.equals(debut) && dateFin.before(debut) && !dateFin.equals(debut)) {
-          return true;
-        } else {
+  private List<Piece> getSalles(int idReservation) {
+    Statement statement;
+    ResultSet resultSet;
 
-          if (dateDebut.after(fin) && !dateDebut.equals(fin)) {
-            return true;
-          } else {
-            return false;
-          }
+    List<Piece> listeSalles = new ArrayList<>();
+
+    try {
+      String query = "SELECT sal_id FROM r_reservation_salle WHERE res_id=" + idReservation;
+      statement = connection.createStatement();
+      resultSet = statement.executeQuery(query);
+      // Get the salle id
+      int idSalle = 0;
+      while (resultSet.next()) {
+        idSalle = Integer.parseInt(resultSet.getString("sal_id"));
+
+        if (idSalle != 0) {
+          SalleDAO salleDAO = new SalleDAO();
+          listeSalles.add(salleDAO.getSalle(idSalle));
         }
       }
     } catch (Exception e) {
-      return false;
     }
 
+    return listeSalles;
+  }
+
+  private List<Service> getServices(int idReservation) {
+    Statement statement;
+    ResultSet resultSet;
+
+    List<Service> listeServices = new ArrayList<>();
+
+    try {
+      String query = "SELECT ser_id FROM r_reservation_service WHERE res_id=" + idReservation;
+      statement = connection.createStatement();
+      resultSet = statement.executeQuery(query);
+      // Get the seervice id
+      int idService = 0;
+      while (resultSet.next()) {
+        idService = Integer.parseInt(resultSet.getString("ser_id"));
+
+        if (idService != 0) {
+          ServiceDAO servieDAO = new ServiceDAO();
+          listeServices.add(servieDAO.getService(idService));
+        }
+      }
+    } catch (Exception e) {
+    }
+    return listeServices;
+  }
+
+  private List<Equipement> getEquipements(int idReservation) {
+    Statement statement;
+    ResultSet resultSet;
+
+    List<Equipement> listeEquipements = new ArrayList<>();
+
+    try {
+      String query = "SELECT eqm_id FROM r_reservation_equipement_mobile WHERE res_id="
+          + idReservation;
+      statement = connection.createStatement();
+      resultSet = statement.executeQuery(query);
+      // Get the equipement id
+      int idEquipement = 0;
+      while (resultSet.next()) {
+        idEquipement = Integer.parseInt(resultSet.getString("eqm_id"));
+
+        if (idEquipement != 0) {
+          EquipementDAO equipementDAO = new EquipementDAO();
+          listeEquipements.add(equipementDAO.getEquipement(idEquipement));
+        }
+      }
+    } catch (Exception e) {
+    }
+
+    return listeEquipements;
+  }
+
+  private PeriodeReservation getPeriodeReservation(int idReservation) {
+    Statement statement;
+    ResultSet resultSet;
+    try {
+      String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE res_id="
+          + idReservation;
+      statement = connection.createStatement();
+      resultSet = statement.executeQuery(query);
+      // Get the occupant id
+      Date dateDebut = null;
+      Date dateFin = null;
+      while (resultSet.next()) {
+        dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut"));
+        dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_fin"));
+      }
+      // get the occupant data
+      if (dateDebut != null && dateFin != null) {
+        return new PeriodeReservation(dateDebut, dateFin);
+      } else {
+        return null;
+      }
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  public Reservation getReservation(int idReservation) {
+    // get occupant
+    Occupant occupant = this.getOccupant(idReservation);
+    // get list salle
+    List<Piece> listSalle = this.getSalles(idReservation);
+    // get liste service
+    List<Service> listSerivce = getServices(idReservation);
+    // get liste equipement
+    List<Equipement> listEquipement = getEquipements(idReservation);
+    // get periode reservation
+    PeriodeReservation periodeReservation = getPeriodeReservation(idReservation);
+    // get liste equipement --> attr
+    EtapeReservation etape = null;
+    // retourner la reservation
+    Reservation reservation = new Reservation(occupant, periodeReservation);
+    reservation.setOccupant(occupant);
+    reservation.setListSalle(listSalle);
+    reservation.setListSerivce(listSerivce);
+    reservation.setListEquipement(listEquipement);
+    reservation.setEtape(etape);
     return reservation;
   }
 
-
   public List<Reservation> getAllReservation() {
-    List<Reservation> res = new ArrayList<>();
+    Statement statement;
+    ResultSet resultSet;
 
-    return res;
+    List<Reservation> listeReservations = new ArrayList<>();
+
+    try {
+      String query = "SELECT res_id FROM t_reservation_res";
+      statement = connection.createStatement();
+      resultSet = statement.executeQuery(query);
+      // Get the occupant id
+      int idReservation = 0;
+      while (resultSet.next()) {
+        idReservation = Integer.parseInt(resultSet.getString("res_id"));
+
+        if (idReservation != 0) {
+          listeReservations.add(getReservation(idReservation));
+        }
+      }
+    } catch (Exception e) {
+    }
+
+    return listeReservations;
   }
 
 }

@@ -5,6 +5,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import assets.Equipement;
+
 public class EquipementDAO extends DAO {
 
   @Override
@@ -25,6 +27,14 @@ public class EquipementDAO extends DAO {
     return false;
   }
 
+  
+  public Equipement getEquipement(int idEquipement) {
+    
+ // TODO Auto-generated method stub
+    return null;
+  }
+  
+  
   public boolean isDateValide(int equMobId, Date dateDebut, Date dateFin) {
     if (dateDebut.after(dateFin))
       return false;
