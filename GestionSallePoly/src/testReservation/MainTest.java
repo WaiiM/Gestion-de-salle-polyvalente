@@ -15,20 +15,26 @@ public class MainTest {
 		ConfigurationControle cc = new ConfigurationControle();
 		ReservationControle rc = new ReservationControle();
 		
-		/*Occupant occ = new Occupant(1,"WaiiM");
+		Occupant occ = new Occupant(1,"WaiiM", TypeOccupant.CITOYEN);
 		
-		PeriodeReservation periode = new PeriodeReservation("12/12/2018", "20/12/2018");
+		PeriodeReservation periode = new PeriodeReservation("2018-12-13", "2018-12-20");
 		
+		SallePolyvalente sallePoly = new SallePolyvalente(0, "Nom");
+		
+		Salle salle = new Salle(0, "Nom", sallePoly);
+		sallePoly.addSalle(salle);
 		
 		Reservation r = new Reservation(occ, periode);
+		
+		r.addSalleToReservation(salle);
 		
 		rc.reserver(r);
 		
 		for(Reservation re : rc.getListReservation()) {
 			System.out.println(re);
-		}*/
+		}
 		
-		Window win = new Window(new Controller(ac, cc, rc));
+		//Window win = new Window(new Controller(ac, cc, rc));
 	}
 
 }

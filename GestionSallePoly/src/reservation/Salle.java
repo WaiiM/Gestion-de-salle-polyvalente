@@ -9,6 +9,14 @@ public class Salle extends Piece{
 		this.type = TypeSalle.SALLE;
 		sallePolyv = salleP;
 	}
+
+  public SallePolyvalente getSallePolyv() {
+    return sallePolyv;
+  }
+
+  public void setSallePolyv(SallePolyvalente sallePolyv) {
+    this.sallePolyv = sallePolyv;
+  }
 	
 	
 

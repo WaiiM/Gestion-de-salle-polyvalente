@@ -19,26 +19,27 @@ import reservation.Reservation;
 public class ReservationDAO extends DAO {
 
   @Override
-  public boolean add(Object o) {
+  public int add(Object o) {
     if (o == null)
-      return false;
+      return 0;
     if (!(o instanceof Reservation))
-      return false;
+      return 0;
     else {
+      int id;
       Reservation reservation = (Reservation) o;
       Statement statement;
 
       try {
         statement = connection.createStatement();
-        for (int i = 0; i < reservation.getListSalle().size(); i++) {
-          String query = "INSERT INTO t_reservation_res(res_occ_id) VALUES ("
-              + reservation.getListSalle().get(i).getId() + ")";
-          statement.executeUpdate(query);
-        }
-        return true;
+        //for (int i = 0; i < reservation.getListSalle().size(); i++) {
+          String query = "INSERT INTO t_reservation_res(res_etape, res_occ_id) VALUES ('"+reservation.getEtape().toString()+"', "+ reservation.getOccupant().getId() + ")";
+          id = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+        //}
+        return id;
 
       } catch (Exception e) {
-        return false;
+        e.printStackTrace();
+        return 0;
       }
     }
   }
@@ -107,6 +108,7 @@ public class ReservationDAO extends DAO {
         }
       }
     } catch (Exception e) {
+      e.printStackTrace();
     }
 
     return listeSalles;
@@ -133,6 +135,7 @@ public class ReservationDAO extends DAO {
         }
       }
     } catch (Exception e) {
+      e.printStackTrace();
     }
     return listeServices;
   }
@@ -159,6 +162,7 @@ public class ReservationDAO extends DAO {
         }
       }
     } catch (Exception e) {
+      e.printStackTrace();
     }
 
     return listeEquipements;
@@ -173,11 +177,11 @@ public class ReservationDAO extends DAO {
       statement = connection.createStatement();
       resultSet = statement.executeQuery(query);
       // Get the occupant id
-      Date dateDebut = null;
-      Date dateFin = null;
+      String dateDebut = null;
+      String dateFin = null;
       while (resultSet.next()) {
-        dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_debut"));
-        dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("res_date_fin"));
+        dateDebut = (resultSet.getString("res_date_debut"));
+        dateFin = (resultSet.getString("res_date_fin"));
       }
       // get the occupant data
       if (dateDebut != null && dateFin != null) {
@@ -186,6 +190,7 @@ public class ReservationDAO extends DAO {
         return null;
       }
     } catch (Exception e) {
+      e.printStackTrace();
       return null;
     }
   }
@@ -233,6 +238,7 @@ public class ReservationDAO extends DAO {
         }
       }
     } catch (Exception e) {
+      e.printStackTrace();
     }
 
     return listeReservations;

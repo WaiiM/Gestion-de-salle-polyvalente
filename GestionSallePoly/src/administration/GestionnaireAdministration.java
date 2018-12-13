@@ -13,14 +13,8 @@ public class GestionnaireAdministration {
 	}
 	
 	public Account isExists(Account a) {
-		Account result = null;
-		for(Account account : this.serviceAccounts.getListAccount()) {
-			if(account!= null && account.equals(a)) {
-				result = account;
-				break;
-			}
-		}
-		return result;
+	  AccountCourant account = new AccountCourant(a);
+	  return account.verifierExistence();
 	}
 	
 	public List<Account> getListAccount() {

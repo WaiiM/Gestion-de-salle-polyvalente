@@ -4,6 +4,7 @@ import assets.*;
 import java.util.*;
 
 public class Reservation {
+  private int id;
 	private EtapeReservation etape;
 	private Occupant occupant;
 	private List<Piece> listSalle;
@@ -20,7 +21,21 @@ public class Reservation {
 		this.periodeReservation = p;
 	}
 
-	public Occupant getOccupant() {
+	public void addSalleToReservation(Salle salle) {
+	  listSalle.add(salle);
+	}
+	
+	public int getId() {
+    return id;
+  }
+
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+
+  public Occupant getOccupant() {
 		return occupant;
 	}
 

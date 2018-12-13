@@ -1,9 +1,6 @@
 package administration;
 
-import assets.PeriodeReservation;
-import dao.SalleDAO;
-import reservation.Salle;
-import reservation.TypeSalle;
+import dao.AccountDAO;
 
 public class AccountCourant {
 	private static AccountDAO daoAccount;
@@ -24,9 +21,8 @@ public class AccountCourant {
 		daoAccount.update(this.account);
 	}
 	
-	public boolean verifierExistence() {
-		boolean result = false;
-		
-		return result;
+	public Account verifierExistence() {
+		if(this.account == null) return null;
+		return (daoAccount.getAccount(this.account));
 	}
 }

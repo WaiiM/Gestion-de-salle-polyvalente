@@ -60,9 +60,13 @@ public class ReservationControle {
 	
 	public void reserver(Reservation r) {
 		if(gr.verification(r)) {
-			gr.reserver(r, EtapeReservation.RESERVATION);
-			System.out.println("Reservation done");
-			return;
+			if(gr.reserver(r, EtapeReservation.RESERVATION)) {
+			  System.out.println("Reservation done");
+			  return;
+			}
+			else {
+			  System.out.println("Problem was occured");
+			}
 		}
 		System.out.println("Reservation Echoué");
 		

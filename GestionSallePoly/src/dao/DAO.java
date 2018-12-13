@@ -26,8 +26,8 @@ public abstract class DAO {
     }
   }
 
-  public abstract boolean add(Object o);
-
+  public abstract int add(Object o);
+  
   public abstract boolean delete(int id);
 
   public abstract boolean update(Object o);

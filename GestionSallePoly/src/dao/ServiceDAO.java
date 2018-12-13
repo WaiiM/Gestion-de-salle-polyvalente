@@ -5,9 +5,9 @@ import assets.Service;
 public class ServiceDAO extends DAO{
 
   @Override
-  public boolean add(Object o) {
+  public int add(Object o) {
     // TODO Auto-generated method stub
-    return false;
+    return 0;
   }
 
   @Override

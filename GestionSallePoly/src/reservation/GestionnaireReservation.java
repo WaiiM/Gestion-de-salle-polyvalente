@@ -33,10 +33,10 @@ public class GestionnaireReservation {
 		serviceReserivationCourante.update();
 	}
 	
-	public void reserver(Reservation r, EtapeReservation etape) {
+	public boolean reserver(Reservation r, EtapeReservation etape) {
 		r.setEtape(etape);
 		ReservationCourante serviceReserivationCourante = new ReservationCourante(r);
-		serviceReserivationCourante.reserver();
+		return serviceReserivationCourante.reserver();
 	}
 
 	public List<Reservation> getListReservation() {
