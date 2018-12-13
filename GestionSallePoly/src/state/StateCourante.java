@@ -12,7 +12,7 @@ public class StateCourante {
   private static ReservationDAO daoReservation;
   private static SalleDAO daoSalle;
   private static SallePolyvalenteDAO daoSallePoly;
-  private State state;
+  private State state; // hello
   
   public StateCourante(State c) {
     if(daoReservation == null) {
