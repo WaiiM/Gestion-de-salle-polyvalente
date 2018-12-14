@@ -3,7 +3,7 @@ package vues.menu;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import vues.menu.MenuSecretaire;;
+
 
 public class MenuAdministrateur extends MenuSecretaire {
   private static final long serialVersionUID = 1L;

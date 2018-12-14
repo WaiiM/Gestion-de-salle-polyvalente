@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import vues.reservation.GestionReservation;
+
 public class MenuSecretaire extends JPanel {
   private static final long serialVersionUID = 1L;
 
@@ -19,6 +21,7 @@ public class MenuSecretaire extends JPanel {
     btnNewButton.setBounds(0, 0, 200, 41);
     btnNewButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
+        new GestionReservation();
       }
     });
     add(btnNewButton);

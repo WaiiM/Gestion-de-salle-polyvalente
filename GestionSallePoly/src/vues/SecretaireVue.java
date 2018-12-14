@@ -14,12 +14,15 @@ public class SecretaireVue extends JPanel{
   public SecretaireVue() {
 		this.setLayout(null);
 		menu = new MenuSecretaire();
-		gestionReservation = new GestionReservation();
+		menu.setBounds(0, 0, 199, 502);
 		
-		menu.setBounds(0, 0, 199, 502);		
+		
+		
+		gestionReservation = new GestionReservation();				
 		gestionReservation.setBounds(200, 0, 716, 502);
 		
 		this.add(menu);
 		this.add(gestionReservation);
+		
 	}
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,14 +28,15 @@ public class ReservationDAO extends DAO {
     else {
       int id;
       Reservation reservation = (Reservation) o;
-      Statement statement;
-
+      PreparedStatement statement;
+      String query = "INSERT INTO t_reservation_res(res_etape, res_occ_id) VALUES (?, ?)";
+      
       try {
-        statement = connection.createStatement();
-        //for (int i = 0; i < reservation.getListSalle().size(); i++) {
-          String query = "INSERT INTO t_reservation_res(res_etape, res_occ_id) VALUES ('"+reservation.getEtape().toString()+"', "+ reservation.getOccupant().getId() + ")";
-          id = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-        //}
+        statement = connection.prepareStatement(query);
+        statement.setString(1, reservation.getEtape().toString());
+        statement.setInt(2, reservation.getOccupant().getId());
+     
+        id = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
         return id;
 
       } catch (Exception e) {
@@ -46,11 +48,13 @@ public class ReservationDAO extends DAO {
 
   @Override
   public boolean delete(int id) {
-    Statement statement;
+    String query = "DELETE FROM r_reservation_salle WHERE res_id=?";
+    PreparedStatement statement;
     try {
-      String query = "DELETE FROM r_reservation_salle WHERE res_id=" + id;
-      statement = connection.createStatement();
-      statement.executeUpdate(query);
+      
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, id);
+      statement.executeQuery();
       return true;
     } catch (SQLException e) {
       return false;
@@ -64,12 +68,14 @@ public class ReservationDAO extends DAO {
   }
 
   private Occupant getOccupant(int idReservation) {
-    Statement statement;
+    String query = "SELECT res_occ_id FROM t_reservation_res WHERE res_id=?";
+    PreparedStatement statement;
     ResultSet resultSet;
     try {
-      String query = "SELECT res_occ_id FROM t_reservation_res WHERE res_id=" + idReservation;
-      statement = connection.createStatement();
-      resultSet = statement.executeQuery(query);
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, idReservation);
+      
+      resultSet = statement.executeQuery();
       // Get the occupant id
       int idOccupant = 0;
       while (resultSet.next()) {
@@ -88,15 +94,19 @@ public class ReservationDAO extends DAO {
   }
 
   private List<Piece> getSalles(int idReservation) {
-    Statement statement;
+    String query = "SELECT sal_id FROM r_reservation_salle WHERE res_id=?";
+    
+    PreparedStatement statement;
     ResultSet resultSet;
 
     List<Piece> listeSalles = new ArrayList<>();
 
     try {
-      String query = "SELECT sal_id FROM r_reservation_salle WHERE res_id=" + idReservation;
-      statement = connection.createStatement();
-      resultSet = statement.executeQuery(query);
+      
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, idReservation);
+      
+      resultSet = statement.executeQuery();
       // Get the salle id
       int idSalle = 0;
       while (resultSet.next()) {
@@ -115,15 +125,16 @@ public class ReservationDAO extends DAO {
   }
 
   private List<Service> getServices(int idReservation) {
-    Statement statement;
+    String query = "SELECT ser_id FROM r_reservation_service WHERE res_id=?";
+    PreparedStatement statement;
     ResultSet resultSet;
 
     List<Service> listeServices = new ArrayList<>();
 
     try {
-      String query = "SELECT ser_id FROM r_reservation_service WHERE res_id=" + idReservation;
-      statement = connection.createStatement();
-      resultSet = statement.executeQuery(query);
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, idReservation);
+      resultSet = statement.executeQuery();
       // Get the seervice id
       int idService = 0;
       while (resultSet.next()) {
@@ -141,16 +152,17 @@ public class ReservationDAO extends DAO {
   }
 
   private List<Equipement> getEquipements(int idReservation) {
-    Statement statement;
+    String query = "SELECT eqm_id FROM r_reservation_equipement_mobile WHERE res_id=?";
+    PreparedStatement statement;
     ResultSet resultSet;
 
     List<Equipement> listeEquipements = new ArrayList<>();
 
     try {
-      String query = "SELECT eqm_id FROM r_reservation_equipement_mobile WHERE res_id="
-          + idReservation;
-      statement = connection.createStatement();
-      resultSet = statement.executeQuery(query);
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, idReservation);
+      
+      resultSet = statement.executeQuery();
       // Get the equipement id
       int idEquipement = 0;
       while (resultSet.next()) {
@@ -169,12 +181,13 @@ public class ReservationDAO extends DAO {
   }
 
   private PeriodeReservation getPeriodeReservation(int idReservation) {
-    Statement statement;
+    String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE res_id=?";
+    PreparedStatement statement;
     ResultSet resultSet;
     try {
-      String query = "SELECT res_date_debut, res_date_fin FROM r_reservation_salle WHERE res_id="
-          + idReservation;
-      statement = connection.createStatement();
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, idReservation);
+      
       resultSet = statement.executeQuery(query);
       // Get the occupant id
       String dateDebut = null;
