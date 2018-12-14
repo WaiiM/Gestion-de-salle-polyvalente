@@ -1,4 +1,4 @@
-package vue;
+package vues.menu;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

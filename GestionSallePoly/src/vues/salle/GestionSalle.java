@@ -1,4 +1,4 @@
-package vue;
+package vues.salle;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -8,6 +8,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import vues.reservation.AjouterReservation;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;

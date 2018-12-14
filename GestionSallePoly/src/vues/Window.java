@@ -1,4 +1,4 @@
-package vue;
+package vues;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -88,6 +88,7 @@ public class Window extends JFrame implements Observator {
     JButton btnConnexion = new JButton("Connexion");
     btnConnexion.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
+        
       }
     });
     btnConnexion.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 40));

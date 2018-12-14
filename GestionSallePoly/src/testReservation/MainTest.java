@@ -1,7 +1,7 @@
 package testReservation;
 
 import reservation.*;
-import vue.Window;
+import vues.Window;
 import administration.AdministrationControle;
 import assets.*;
 import configuration.ConfigurationControle;
