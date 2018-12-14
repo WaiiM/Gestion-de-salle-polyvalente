@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 
 public class Window extends JFrame implements Observator {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L; 
   private JPanel mainPanel;
   private JPanel adminPanel;
   private JPanel secretairePanel;
