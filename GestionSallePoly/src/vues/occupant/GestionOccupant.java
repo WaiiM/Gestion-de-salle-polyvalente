@@ -17,29 +17,18 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GestionSalle extends JPanel{
-  public GestionSalle() {
+public class GestionOccupant extends JPanel{
+  public GestionOccupant() {
     setLayout(null);
-    
-    JLabel lblFiltre = new JLabel("Filtre : ");
-    lblFiltre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    lblFiltre.setBounds(28, 32, 88, 22);
-    add(lblFiltre);
-    
-    JComboBox<String> comboBox = new JComboBox<>();
-    comboBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    comboBox.setModel(new DefaultComboBoxModel(new String[] {"Toutes les salles", "Salles Libres", "Salles reservées", "Salles en cours de reservtion"}));
-    comboBox.setBounds(140, 33, 177, 25);
-    add(comboBox);
     
     JLabel lblRechrche = new JLabel("Recherche : ");
     lblRechrche.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    lblRechrche.setBounds(28, 78, 110, 22);
+    lblRechrche.setBounds(28, 11, 110, 22);
     add(lblRechrche);
     
     textField = new JTextField();
     textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    textField.setBounds(140, 81, 177, 22);
+    textField.setBounds(140, 14, 177, 22);
     add(textField);
     textField.setColumns(10);
     
@@ -55,14 +44,8 @@ public class GestionSalle extends JPanel{
     });
     btnAjouterUneReservation.setHorizontalAlignment(SwingConstants.LEFT);
     btnAjouterUneReservation.setFont(new Font("Tahoma", Font.PLAIN, 15));
-    btnAjouterUneReservation.setBounds(494, 25, 209, 38);
+    btnAjouterUneReservation.setBounds(493, 4, 209, 38);
     add(btnAjouterUneReservation);
-    
-    JButton btnNewButton = new JButton("Exporter la liste des salles");
-    btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-    btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-    btnNewButton.setBounds(494, 71, 209, 38);
-    add(btnNewButton);
     
     JScrollPane scrollPane = new JScrollPane();
     scrollPane.setBounds(28, 138, 674, 329);
