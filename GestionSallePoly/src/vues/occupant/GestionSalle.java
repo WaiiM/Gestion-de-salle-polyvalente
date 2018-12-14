@@ -1,4 +1,4 @@
-package vues.salle;
+package vues.occupant;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

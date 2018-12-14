@@ -34,7 +34,7 @@ public class MainTest {
 			System.out.println(re);
 		}
 		
-		//Window win = new Window(new Controller(ac, cc, rc));
+		Window win = new Window(new Controller(ac, cc, rc));
 	}
 
 }

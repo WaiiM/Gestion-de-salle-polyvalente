@@ -51,18 +51,16 @@ public class Administration extends JPanel{
     scrollPane.setViewportView(table);
     table.setModel(new DefaultTableModel(
       new Object[][] {
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
       },
       new String[] {
-        "Username", "Nom", "Pr\u00E9nom", "Telephone", "D\u00E9sactivation", "Type Utilisateur", "Supression"
+        "Username", "Nom", "Pr\u00E9nom", "Telephone", "Type Utilisateur", "Actions"
       }
     ));
     table.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -71,7 +69,6 @@ public class Administration extends JPanel{
     table.getColumnModel().getColumn(3).setPreferredWidth(100);
     table.getColumnModel().getColumn(4).setPreferredWidth(100);
     table.getColumnModel().getColumn(5).setPreferredWidth(100);
-    table.getColumnModel().getColumn(6).setPreferredWidth(100);
   }
   private static final long serialVersionUID = 1L;
   private JTextField textField;

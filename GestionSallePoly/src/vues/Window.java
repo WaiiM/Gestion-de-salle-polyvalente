@@ -6,8 +6,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,6 +21,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import administration.Account;
 import administration.TypeAccount;
 import controller.Controller;
+import vues.observateur_observable.Observator;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -88,7 +92,11 @@ public class Window extends JFrame implements Observator {
     JButton btnConnexion = new JButton("Connexion");
     btnConnexion.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
-        
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(getComponent(0)) == JFileChooser.APPROVE_OPTION) {
+          File file = fileChooser.getSelectedFile();
+          // save to file
+        }
       }
     });
     btnConnexion.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 40));

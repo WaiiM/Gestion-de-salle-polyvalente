@@ -16,8 +16,6 @@ public class SecretaireVue extends JPanel{
 		menu = new MenuSecretaire();
 		menu.setBounds(0, 0, 199, 502);
 		
-		
-		
 		gestionReservation = new GestionReservation();				
 		gestionReservation.setBounds(200, 0, 716, 502);
 		
