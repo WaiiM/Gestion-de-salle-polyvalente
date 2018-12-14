@@ -1,4 +1,4 @@
-package vue;
+package vues.reservation;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
